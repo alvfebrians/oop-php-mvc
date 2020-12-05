@@ -32,19 +32,20 @@
       $row = $this->db->single();
 
       //Check Rows
-      if($this->db->rowCount() > 0){
+      if($this->db->rowCount() > 0){   //jika besar dari nol maka fungsi true 
         return true;
       } else {
         return false;
       }
     }
 
-    // Login / Authenticate User
-    public function login($email, $password){
-      $this->db->query("SELECT * FROM users WHERE email = :email");
-      $this->db->bind(':email', $email);
+    // Login / Authenticate User Login atau autentikasi User
+    public function login($email, $password){  
+      $this->db->query("SELECT * FROM users WHERE email = :email"); //melakukan query
+      $this->db->bind(':email', $email); /melakukan bind 
 
-      $row = $this->db->single();
+
+      $row = $this->db->single(); // mengambil data tunggal
       
       $hashed_password = $row->password;
       if(password_verify($password, $hashed_password)){
